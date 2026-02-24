@@ -1,33 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Carrito</title>
+    <link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
-    <header>
-            <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="catalogue.html">Catálogo</a>
-            <a href="salehistory.html" >Historial de ventas</a>
-            <a href="sale/cart.html" class="cart">Carrito de compras</a>
-    </header>
-    <main>
-        <h1>Carrito de compras</h1>
-        <section id="carrito"></section>
-        <button id="comprar">Comprar</button>
-        <h1>Nueva venta</h1>
-    <div id="carrito"></div>
-    <h2>Total: $<span id="total">0</span></h2>
-    <button onclick="finalizarVenta()">Finalizar</button>
+    <h1>Nueva venta</h1>
+    <section id="catalogo"></section>
+    <h2>Carrito</h2>
+    <section id="carrito"></section>
+    <h3>Total: $<span id="total">0</span></h3>
+    <button onclick="location.href='payment.html'">Ir a pago</button>
     <script src="../../js/main.js"></script>
+    <script src="../../js/catalogue.js"></script>
     <script src="../../js/sale/compras.js"></script>
-    <script src="../../js/sale/payment.js"></script>
+    <script> renderCatalogo();    renderCarrito();  </script>
 
-    </main>
-    <footer>
-        
-    </footer>
 </body>
 </html>

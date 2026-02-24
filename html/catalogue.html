@@ -1,26 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/catalogue.js"></script>
-    <script src="../js/main.js"></script>
-    <title>Papel y luna</title>
+    <title>Catálogo</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <header>
-    <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="catalogue.html" class="catalogue">Catálogo</a>
-            <a href="salehistory.html" >Historial de ventas</a>
-            <a href="sale/cart.html">Carrito de compras</a>
-    </header>
-    <main>
-        <h1>Catálogo de productos</h1>
-        <section id="catalogo"></section>
-        <button onclick="crearProductoRapido()">➕ Crear producto</button>
-    </main>
-    <footer>
-    </footer>
+
+    <h1>Catálogo de productos</h1>
+    <button onclick="crearProductoRapido()">➕ Nuevo producto</button>
+    <section id="catalogo"></section>
+    <script src="../js/main.js"></script>
+    <script src="../js/catalogue.js"></script>
+    <script> renderCatalogo();</script>
+
 </body>
 </html>

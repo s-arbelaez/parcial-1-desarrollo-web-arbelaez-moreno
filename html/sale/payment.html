@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagos</title>
+  <meta charset="UTF-8">
+  <title>Pago</title>
+  <link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
-    <header>
-        <i class="fa-solid fa-chevron-left"></i> <h3>Volver al carrito de compras</h3>
-    </header>
-    <main>
-        <h1>Pagos</h1>
-        <h3>Método de pago</h3>
-    </main>
-    <footer>
-        
-    </footer>
+
+    <h1>Pago</h1>
+    <p>Total a pagar: $<span id="total"></span></p>
+    <button onclick="finalizarVenta()">Confirmar pago</button>
+    <button onclick="location.href='cart.html'">Volver</button>
+
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/sale/compras.js"></script>
+    <script src="../../js/sale/payment.js"></script>
+    <script>    document.getElementById("total").textContent =     carrito.reduce((s,i)=>s+i.precio*i.cantidad,0); </script>
+
 </body>
 </html>
