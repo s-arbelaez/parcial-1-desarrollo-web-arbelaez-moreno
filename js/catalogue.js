@@ -49,15 +49,18 @@ function crearProductoRapido() {
 
   const stock = Number(prompt("Stock:"));
   if (isNaN(stock)) return alert("Stock inválido");
-
+  const imagen = prompt(
+  "URL de la imagen del producto (deja vacío para usar una por defecto):"
+) || "https://via.placeholder.com/400x400?text=Producto";
+  const categoria = prompt("Categoría del producto:");
   const producto = new Producto({
     id: Date.now(),
     nombre,
     descripcion,
     precio,
-    imagen: "https://via.placeholder.com/100",
+    imagen: prompt("Imagen URL:"),
     proveedor: "interno",
-    categoria: "general",
+    categoria,
     stock
   });
 

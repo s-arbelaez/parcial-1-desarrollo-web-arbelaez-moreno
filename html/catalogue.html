@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Catálogo</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/catalogue.css">
 </head>
 <body>
-
-    <h1>Catálogo de productos</h1>
-    <button onclick="crearProductoRapido()">➕ Nuevo producto</button>
-    <section id="catalogo"></section>
-    <script src="../js/main.js"></script>
-    <script src="../js/sale/compras.js"></script>
-    <script src="../js/catalogue.js"></script>
-    <script> renderCatalogo();</script>
-
+    <section id="filtro"> 
+        <h1>Filtros:</h1>
+    </section>
+    <section id="productos">
+        <h1>Catálogo de productos</h1>
+        <button onclick="crearProductoRapido()" id="agregarProducto">
+            <span> + </span> 
+            <span>Agregar un producto</span>
+        </button>
+        <section id="catalogo"></section>
+        <script src="../js/main.js"></script>
+        <script src="../js/sale/compras.js"></script>
+        <script src="../js/catalogue.js"></script>
+        <script> renderCatalogo();</script>
+    </section>
 </body>
 </html>
