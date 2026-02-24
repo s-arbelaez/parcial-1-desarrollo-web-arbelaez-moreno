@@ -10,6 +10,7 @@ class Producto {
     this.stock = Number(stock);
   }
 }
+
 function renderCatalogo() {
   const contenedor = document.getElementById("catalogo");
   if (!contenedor) return;
@@ -37,4 +38,29 @@ function renderCatalogo() {
     contenedor.appendChild(card);
   });
 }
+
+function crearProductoRapido() {
+  const nombre = prompt("Nombre");
+  if (!nombre) return;
+
+  const precio = prompt("Precio venta");
+  const costo = prompt("Costo");
+  const stock = prompt("Stock inicial");
+
+  productos.push(
+    new Producto(
+      Date.now(),
+      nombre,
+      "General",
+      precio,
+      costo,
+      stock,
+      ""
+    )
+  );
+
+  guardarTodo();
+  renderCatalogo();
+}
+
 document.addEventListener("DOMContentLoaded", renderCatalogo);
