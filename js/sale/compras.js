@@ -1,33 +1,48 @@
+function agregarAlCarrito(id) {
+  const producto = productos.find(p => p.id === id);
+  if (!producto || producto.stock <= 0) return;
 
-class Compra {
-    constructor({ id, proveedor, items, metodoPago }) {
-    this.id = id;
-    this.proveedor = proveedor;
-    this.items = items;
-    this.metodoPago = metodoPago;
-    this.total = items.reduce((s, i) => s + i.costo * i.cantidad, 0);
-    this.fecha = new Date().toLocaleString();
-    }
+  const item = carrito.find(i => i.id === id);
+  if (item) {
+    if (item.cantidad < producto.stock) item.cantidad++;
+  } else {
+    carrito.push({
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      cantidad: 1
+    });
+  }
+
+  guardarTodo();
+  renderCarrito();
 }
-function anularVenta(idVenta) {
-  const venta = historialVentas.find(v => v.id === idVenta);
-  if (venta.estado !== "ACTIVA") return;
 
-  venta.items.forEach(i => {
-    const p = catalogo.find(p => p.id === i.id);
-    p.stock += i.cantidad;
+function renderCarrito() {
+  const cont = document.getElementById("carrito");
+  if (!cont) return;
+
+  cont.innerHTML = "";
+  let total = 0;
+
+  carrito.forEach(i => {
+    total += i.precio * i.cantidad;
+
+    const row = document.createElement("div");
+    row.className = "cart-item";
+    row.innerHTML = `
+      ${i.nombre} x${i.cantidad}
+      <button onclick="i.cantidad--; limpiar()">-</button>
+      <button onclick="agregarAlCarrito(${i.id})">+</button>
+    `;
+    cont.appendChild(row);
   });
 
-  venta.estado = "ANULADA";
-  guardarTodo();
+  document.getElementById("total").textContent = total;
 }
-function reembolsoParcial(idVenta, productoId, cantidad) {
-  const venta = historialVentas.find(v => v.id === idVenta);
-  const item = venta.items.find(i => i.id === productoId);
 
-  item.cantidad -= cantidad;
-  const p = catalogo.find(p => p.id === productoId);
-  p.stock += cantidad;
-
+function limpiar() {
+  carrito = carrito.filter(i => i.cantidad > 0);
   guardarTodo();
+  renderCarrito();
 }

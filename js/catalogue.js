@@ -1,143 +1,56 @@
-// =========================
-// MODELO
-// =========================
 class Producto {
-  constructor(id, nombre, precio, descripcion, imagen, proveedor, categoria, stock) {
+  constructor(id, nombre, categoria, precio, costo, stock, imagen) {
     this.id = id;
     this.nombre = nombre;
-    this.precio = Number(precio);
-    this.descripcion = descripcion;
-    this.imagen = imagen;
-    this.proveedor = proveedor;
     this.categoria = categoria;
+    this.precio = Number(precio);
+    this.costo = Number(costo);
     this.stock = Number(stock);
+    this.imagen = imagen;
   }
 }
 
-// =========================
-// ESTADO (CATÁLOGO)
-// =========================
-let productos = [];
-
-// Si tienes un producto inicial
-if (typeof tijerasRoma !== "undefined") {
-  productos.push(tijerasRoma);
-}
-
-// =========================
-// RENDER DE UNA CARD
-// =========================
-function card(producto, catalog) {
-  const article = document.createElement("article");
-
-  const img = document.createElement("img");
-  img.src = producto.imagen;
-  img.width = 100;
-  img.height = 100;
-
-  const footer = document.createElement("section");
-
-  const title = document.createElement("h4");
-  title.textContent = producto.nombre;
-
-  const desc = document.createElement("p");
-  desc.textContent = producto.descripcion;
-
-  const price = document.createElement("h3");
-  price.textContent = `$${producto.precio}`;
-
-  const stock = document.createElement("small");
-  stock.textContent = `Stock: ${producto.stock}`;
-
-  const addBtn = document.createElement("button");
-  addBtn.innerHTML = '<i class="fa fa-plus-square"></i>';
-
-  footer.append(title, desc, price, stock, addBtn);
-  article.append(img, footer);
-  catalog.appendChild(article);
-}
-
-// =========================
-// RENDER DEL CATÁLOGO
-// =========================
 function renderCatalogo() {
-  const catalog = document.getElementById("catalogo");
-  if (!catalog) return;
+  const cont = document.getElementById("catalogo");
+  if (!cont) return;
 
-  catalog.innerHTML = "";
-  productos.forEach(p => card(p, catalog));
-}
+  cont.innerHTML = "";
+  productos.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "card";
 
-// =========================
-// CRUD DE PRODUCTOS
-// =========================
-function crearProducto(data) {
-  const nuevoProducto = new Producto(
-    Date.now(),
-    data.nombre,
-    data.precio,
-    data.descripcion,
-    data.imagen,
-    data.proveedor,
-    data.categoria,
-    data.stock
-  );
+    card.innerHTML = `
+      <img src="${p.imagen || ''}">
+      <h4>${p.nombre}</h4>
+      <p>$${p.precio}</p>
+      <small>Stock: ${p.stock}</small>
+      <button onclick="agregarAlCarrito(${p.id})">Agregar</button>
+    `;
 
-  productos.push(nuevoProducto);
-  guardarCatalogo();
-  renderCatalogo();
-}
-
-function editarProducto(id, cambios) {
-  const producto = productos.find(p => p.id === id);
-  if (!producto) return;
-
-  Object.assign(producto, cambios);
-  guardarCatalogo();
-  renderCatalogo();
-}
-
-function eliminarProducto(id) {
-  productos = productos.filter(p => p.id !== id);
-  guardarCatalogo();
-  renderCatalogo();
-}
-
-// =========================
-// STORAGE
-// =========================
-function guardarCatalogo() {
-  localStorage.setItem("productos", JSON.stringify(productos));
-}
-
-function cargarCatalogo() {
-  const data = localStorage.getItem("productos");
-  if (data) {
-    productos = JSON.parse(data);
-  }
-}
-
-// =========================
-// FORMULARIO (USUARIO FINAL)
-// =========================
-const form = document.getElementById("formProducto");
-
-if (form) {
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
-
-    crearProducto(data);
-    this.reset();
+    cont.appendChild(card);
   });
 }
 
-// =========================
-// INIT
-// =========================
-document.addEventListener("DOMContentLoaded", () => {
-  cargarCatalogo();
+function crearProductoRapido() {
+  const nombre = prompt("Nombre");
+  if (!nombre) return;
+
+  const precio = prompt("Precio venta");
+  const costo = prompt("Costo");
+  const stock = prompt("Stock inicial");
+
+  productos.push(
+    new Producto(
+      Date.now(),
+      nombre,
+      "General",
+      precio,
+      costo,
+      stock,
+      ""
+    )
+  );
+
+  guardarTodo();
   renderCatalogo();
-});
+}

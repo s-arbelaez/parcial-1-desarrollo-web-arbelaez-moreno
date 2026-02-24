@@ -1,42 +1,16 @@
-let historialCompras = [];
-let historialVentas = [];
+function renderHistorial() {
+  const cont = document.getElementById("historial");
+  if (!cont) return;
 
-function confirmarVenta(metodoPago, cliente = null) {
-  const venta = new Venta({
-    id: historialVentas.length + 1,
-    items: [...carrito],
-    metodoPago,
-    cliente
+  cont.innerHTML = "";
+  ventas.forEach(v => {
+    const row = document.createElement("div");
+    row.className = "venta";
+    row.innerHTML = `
+      <strong>Venta ${v.id}</strong>
+      <p>${v.fecha}</p>
+      <p>Total: $${v.total}</p>
+    `;
+    cont.appendChild(row);
   });
-
-  // Descontar stock
-  venta.items.forEach(i => {
-    const p = catalogo.find(p => p.id === i.id);
-    p.stock -= i.cantidad;
-  });
-
-  historialVentas.push(venta);
-  carrito = [];
-
-  guardarTodo();
-}
-function registrarCompra(compra) {
-    compra.items.forEach(i => {
-    let producto = catalogo.find(p => p.id === i.id);
-    if (!producto) {
-    crearProducto({
-            id: i.id,
-            nombre: i.nombre,
-            precio: i.precioVenta,
-            stock: i.cantidad,
-            imagen: i.imagen,
-            proveedor: i.proveedor,
-            categoria: i.categoria
-    });
-    } else {
-        producto.stock += i.cantidad;
-    }
-    });
-historialCompras.push(compra);
-guardarTodo();
 }
