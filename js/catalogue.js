@@ -40,26 +40,29 @@ function renderCatalogo() {
 }
 
 function crearProductoRapido() {
-  const nombre = prompt("Nombre");
+  const nombre = prompt("Nombre del producto:");
   if (!nombre) return;
 
-  const precio = prompt("Precio venta");
-  const costo = prompt("Costo");
-  const stock = prompt("Stock inicial");
+  const descripcion = prompt("Descripción:");
+  const precio = Number(prompt("Precio:"));
+  if (isNaN(precio)) return alert("Precio inválido");
 
-  productos.push(
-    new Producto(
-      Date.now(),
-      nombre,
-      "General",
-      precio,
-      costo,
-      stock,
-      ""
-    )
-  );
+  const stock = Number(prompt("Stock:"));
+  if (isNaN(stock)) return alert("Stock inválido");
 
-  guardarTodo();
+  const producto = new Producto({
+    id: Date.now(),
+    nombre,
+    descripcion,
+    precio,
+    imagen: "https://via.placeholder.com/100",
+    proveedor: "interno",
+    categoria: "general",
+    stock
+  });
+
+  productos.push(producto);
+  guardarProductos();
   renderCatalogo();
 }
 
