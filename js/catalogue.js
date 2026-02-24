@@ -1,4 +1,4 @@
-
+import {productos} from "./main.js";
 function card(obj) {
 
     // ? Contenedor
