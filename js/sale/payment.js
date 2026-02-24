@@ -23,5 +23,5 @@ function finalizarVenta() {
   carrito = [];
   guardarTodo();
   alert("Venta realizada");
-  location.href = "../historial.html";
+  location.href = "../../html/salehistory.html";
 }
