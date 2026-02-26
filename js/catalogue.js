@@ -38,7 +38,18 @@ function renderCatalogo() {
     btnEditar.textContent = "Editar";
     btnEditar.addEventListener("click", (e) => {
       e.stopPropagation(); // Evita que el evento se propague al artículo
-      editarProducto(producto.id, { nombre: "Producto Editado" });
+      const nuevoNombre = prompt("Nuevo nombre del producto:", producto.nombre);
+      if (nuevoNombre) {
+        editarProducto(producto.id, { nombre: nuevoNombre });
+      const nuevoPrecio = prompt("Nuevo precio del producto:", producto.precio);
+      if (nuevoPrecio && !isNaN(nuevoPrecio)) {
+        editarProducto(producto.id, { precio: Number(nuevoPrecio) });
+      }
+      const nuevaDescripcion = prompt("Nueva descripción del producto:", producto.descripcion);
+      if (nuevaDescripcion) {
+        editarProducto(producto.id, { descripcion: nuevaDescripcion });
+      }
+      }
     });
     const btnEliminar = document.createElement("button");
     btnEliminar.textContent = "Eliminar";
@@ -90,7 +101,6 @@ function crearProductoRapido() {
 function editarProducto(id, cambios) {
   const producto = productos.find(p => p.id === id);
   if (!producto) return;
-
   Object.assign(producto, cambios);
   guardarProductos();
   renderCatalogo();
