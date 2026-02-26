@@ -103,7 +103,7 @@ function crearProductoRapido() {
     nombre,
     descripcion,
     precio,
-    imagen: prompt("Imagen URL:"),
+    imagen,
     proveedor: "interno",
     categoria,
     stock
@@ -111,20 +111,20 @@ function crearProductoRapido() {
 
   productos.push(producto);
   guardarProductos();
-  renderCatalogo();
+  renderCatalogo(productos);
 }
 function editarProducto(id, cambios) {
   const producto = productos.find(p => p.id === id);
   if (!producto) return;
   Object.assign(producto, cambios);
   guardarProductos();
-  renderCatalogo();
+  renderCatalogo(productos);
 }
 
 function eliminarProducto(id) {
   productos = productos.filter(p => p.id !== id);
   guardarProductos();
-  renderCatalogo();
+  renderCatalogo(productos);
 }
 function searchProduct(name) {
     const query = name.trim().toLowerCase();

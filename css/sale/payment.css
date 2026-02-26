@@ -1,0 +1,33 @@
+html {
+    height: 100%;
+}
+body {
+    background: #111;
+    color: white;
+    font-family: Arial;
+    height: 100%;
+    h1,
+    h4 {
+        margin: 3px;
+        color: rgb(81, 61, 211);
+    }
+}
+a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #0f0f0f;
+    border-bottom: 2px solid #1f1f1f;
+    margin-left: 240px;
+    justify-content: flex-start;
+    text-align: center;
+}

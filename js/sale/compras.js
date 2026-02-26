@@ -2,6 +2,9 @@ function agregarAlCarrito(id) {
   const producto = productos.find(p => p.id === id);
   if (!producto) return;
 
+  if (Number(producto.stock) <= 0) {
+    return;
+  }
   const item = carrito.find(i => i.id === id);
 
   if (item) {
@@ -25,11 +28,29 @@ function renderCarrito() {
   cont.innerHTML = "";
   let total = 0;
 
+  carrito = carrito.filter(item => {
+    const producto = productos.find(p => p.id === item.id);
+    if (!producto) return false;
+
+    const stock = Number(producto.stock);
+    if (stock <= 0) return false;
+
+    const cant = Number(item.cantidad);
+    if (!Number.isFinite(cant) || cant <= 0) return false;
+
+    if (item.cantidad > stock) item.cantidad = stock;
+
+    return true;
+  });
+
   carrito.forEach(item => {
     const producto = productos.find(p => p.id === item.id);
     if (!producto) return;
 
-    const subtotal = item.precio * item.cantidad;
+    const precioUnitario = Number(item.precio) || 0;
+    const cantidad = Number(item.cantidad) || 0;
+
+    const subtotal = precioUnitario * cantidad;
     total += subtotal;
 
     const article = document.createElement("article");
@@ -40,16 +61,19 @@ function renderCarrito() {
 
       <div class="carrito-info">
         <h4>${item.nombre}</h4>
-        <p>$${item.precio}</p>
+
+        <p>C/U: $${precioUnitario}</p>
+        <p><strong>Subtotal: $${subtotal}</strong></p>
       </div>
 
       <div class="carrito-controls">
         <button onclick="cambiarCantidad(${item.id}, -1)">−</button>
-        <span>${item.cantidad}</span>
+        <span>${cantidad}</span>
         <button onclick="cambiarCantidad(${item.id}, 1)">+</button>
         <button onclick="eliminarItem(${item.id})">🗑</button>
       </div>
     `;
+
 
     cont.appendChild(article);
   });
