@@ -106,6 +106,8 @@ body {
     gap: 30px;
     padding: 40px;
     padding-right: 240px; /* espacio para el botón lateral */
+    margin-left: 240px;
+    left: 220px;
 }
 #catalogo article {
     background: #161616;

@@ -1,3 +1,11 @@
+/**
+ * The above code defines a class `Producto`, creates functions to render, create, edit, and delete
+ * products in a catalog, and sets up event listeners to interact with the catalog.
+ * @returns The code snippet provided is a JavaScript code that defines a `Producto` class, functions
+ * for rendering a catalog of products, creating a new product quickly, editing a product, and deleting
+ * a product. The code also includes event listeners for buttons like "Agregar al carrito" (Add to
+ * cart), "Editar" (Edit), and "Eliminar" (Delete) associated with each product card in the catalog
+ */
 class Producto {
   constructor({ id, nombre, precio, descripcion, imagen, proveedor, categoria, stock }) {
     this.id = id;
@@ -26,7 +34,18 @@ function renderCatalogo() {
     btn.addEventListener("click", () => {
       agregarAlCarrito(producto.id);
     });
-
+    const btnEditar = document.createElement("button");
+    btnEditar.textContent = "Editar";
+    btnEditar.addEventListener("click", (e) => {
+      e.stopPropagation(); // Evita que el evento se propague al artículo
+      editarProducto(producto.id, { nombre: "Producto Editado" });
+    });
+    const btnEliminar = document.createElement("button");
+    btnEliminar.textContent = "Eliminar";
+    btnEliminar.addEventListener("click", (e) => {
+      e.stopPropagation(); // Evita que el evento se propague al artículo
+      eliminarProducto(producto.id);
+    });
     card.innerHTML = `
       <img src="${producto.imagen}" width="100">
       <h4>${producto.nombre}</h4>
@@ -35,6 +54,8 @@ function renderCatalogo() {
     `;
 
     card.appendChild(btn);
+    card.appendChild(btnEditar);
+    card.appendChild(btnEliminar);
     contenedor.appendChild(card);
   });
 }
@@ -42,11 +63,9 @@ function renderCatalogo() {
 function crearProductoRapido() {
   const nombre = prompt("Nombre del producto:");
   if (!nombre) return;
-
   const descripcion = prompt("Descripción:");
   const precio = Number(prompt("Precio:"));
   if (isNaN(precio)) return alert("Precio inválido");
-
   const stock = Number(prompt("Stock:"));
   if (isNaN(stock)) return alert("Stock inválido");
   const imagen = prompt(
@@ -65,6 +84,20 @@ function crearProductoRapido() {
   });
 
   productos.push(producto);
+  guardarProductos();
+  renderCatalogo();
+}
+function editarProducto(id, cambios) {
+  const producto = productos.find(p => p.id === id);
+  if (!producto) return;
+
+  Object.assign(producto, cambios);
+  guardarProductos();
+  renderCatalogo();
+}
+
+function eliminarProducto(id) {
+  productos = productos.filter(p => p.id !== id);
   guardarProductos();
   renderCatalogo();
 }
