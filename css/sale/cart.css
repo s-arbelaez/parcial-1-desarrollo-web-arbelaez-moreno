@@ -95,7 +95,6 @@ body {
 #catalogo, #carrito {
     gap: 30px;
     padding: 10px;
-    border: 1px solid green;
     width: 300px;
 
     article {
