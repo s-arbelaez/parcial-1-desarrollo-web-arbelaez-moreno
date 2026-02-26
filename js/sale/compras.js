@@ -18,7 +18,6 @@ function agregarAlCarrito(id) {
   guardarCarrito();
   renderCarrito();
 }
-
 function renderCarrito() {
   const cont = document.getElementById("carrito");
   if (!cont) return;
@@ -27,20 +26,32 @@ function renderCarrito() {
   let total = 0;
 
   carrito.forEach(item => {
+    const producto = productos.find(p => p.id === item.id);
+    if (!producto) return;
+
     const subtotal = item.precio * item.cantidad;
     total += subtotal;
 
-    const div = document.createElement("div");
-    div.innerHTML = `
-      <strong>${item.nombre}</strong>
-      <button onclick="cambiarCantidad(${item.id}, -1)">-</button>
-      ${item.cantidad}
-      <button onclick="cambiarCantidad(${item.id}, 1)">+</button>
-      = $${subtotal}
-      <button onclick="eliminarItem(${item.id})">🗑</button>
+    const article = document.createElement("article");
+    article.className = "carrito-item";
+
+    article.innerHTML = `
+      <img src="${producto.imagen}" alt="${item.nombre}">
+
+      <div class="carrito-info">
+        <h4>${item.nombre}</h4>
+        <p>$${item.precio}</p>
+      </div>
+
+      <div class="carrito-controls">
+        <button onclick="cambiarCantidad(${item.id}, -1)">−</button>
+        <span>${item.cantidad}</span>
+        <button onclick="cambiarCantidad(${item.id}, 1)">+</button>
+        <button onclick="eliminarItem(${item.id})">🗑</button>
+      </div>
     `;
 
-    cont.appendChild(div);
+    cont.appendChild(article);
   });
 
   document.getElementById("total").textContent = total;

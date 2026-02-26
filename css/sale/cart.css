@@ -1,0 +1,30 @@
+#carrito {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 40px;
+}
+* {
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: #111;
+  color: white;
+  font-family: Arial;
+  height: 100%;
+
+  h1,
+  h4 {
+    margin: 3px;
+    color: rgb(81, 61, 211);
+  }
+}
