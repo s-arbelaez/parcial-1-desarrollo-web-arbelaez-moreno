@@ -1,8 +1,102 @@
 body {
     background: #111;
-    color:white;
+    color: white;
     font-family: 'Inter', sans-serif;
+
+    header {
+        position: sticky;
+        top: 0;
+        background-color: black;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        z-index: 1;
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            padding-left: 50px;
+            padding-right: 50px;
+
+            section {
+                display: flex;
+                width: 40%;
+                height: 40px;
+                background-color: white;
+                overflow: hidden;
+                border-radius: 10px;
+                padding-left: 20px;
+                box-shadow: 4px 3px black;
+            }
+
+            section:hover {
+                border: 2px solid rgb(81, 61, 211);
+            }
+        }
+
+        a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: rgb(81, 61, 211);
+            transition: transform 0.25s ease, filter 0.25s ease;
+            justify-items: center;
+
+            p {
+                margin: 0;
+                font-weight: bold;
+            }
+
+            i {
+                justify-self: center;
+                display: flex;
+            }
+        }
+
+        #searchBar {
+            height: 100%;
+            width: 100%;
+            border: 0px;
+            align-content: center;
+            font-size: 20px;
+            background-color: transparent;
+        }
+
+        #searchBar::placeholder {
+            font-size: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #searchBar:focus {
+            outline: none;
+        }
+
+        #searchButton {
+            height: 100%;
+            aspect-ratio: 1;
+            border: 0px;
+            background-color: rgb(121, 103, 233);
+        }
+
+        #searchButton:hover {
+            cursor: pointer;
+        }
+
+        #searchButton:active {
+            background-color: #a091e2;
+
+        }
+
+        a:hover {
+            transform: translateY(-6px);
+            filter: drop-shadow(0 15px 30px rgba(156, 146, 248, 0.6));
+        }
+    }
 }
+
 #agregarProducto {
     position: fixed;
     right: 0;
@@ -21,6 +115,7 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 #agregarProducto:hover {
     background-color: #1a1a1a;
 }
@@ -38,117 +133,86 @@ body {
     text-transform: uppercase;
 }
 
-.card {
-    border: 3px solid var(--color2);
-    overflow: hidden;
-    width: 80%;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    padding-top: 10px;
-    p {
-        text-align: center;
-        padding: 5px;
-    }
-}
-
-.card:hover {
-    border: 3px solid var(--color1);
-
-}
-
-.img {
-    width: 200px;
-    aspect-ratio: 1;
-}
-
-.card-content {
-    background-color: #edd5fd;
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card-footer {
-    display: flex;
-    width: 80%;
-    justify-content: space-between;
-    align-items: center;
-    gap: 50px;
-}
-
-.card-title {
-    width: 80%;
-    text-align: center;
-}
-
-.addBtn {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-}
-
-.addBtn:hover {
-    cursor: pointer;
-}
-
-.addBtn:active {
-    background-color: #a091e2;
-}
 #catalogo {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 30px;
     padding: 40px;
-    padding-right: 240px; /* espacio para el botón lateral */
+    padding-right: 240px;
     margin-left: 240px;
     left: 220px;
-}
-#catalogo article {
-    background: #161616;
-    border-radius: 18px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
 
-#catalogo article:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-}
-#catalogo article img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    background: #222;
-}
-#catalogo article h4 {
-    margin: 16px;
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-}
+    article {
+        background: #161616;
+        padding: 10px;
+        border-radius: 18px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
 
-#catalogo article p {
-    margin: 0 16px 12px;
-    font-size: 14px;
-    color: #ccc;
-    text-align: center;
-    flex-grow: 1;
-}
+        img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #222;
+        }
 
-#catalogo article strong {
-    display: block;
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 14px;
+        h4 {
+            margin: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        p {
+            margin: 0 16px 12px;
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        strong {
+            display: block;
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 14px;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+
+            button {
+                background-color: rgb(81, 61, 211);
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                font-weight: bold;
+                padding: 10px;
+                border-radius: 10px;
+                border: 0;
+            }
+
+            button:hover {
+                background-color: rgb(122, 105, 231);
+            }
+
+            button:active {
+                background-color: rgb(53, 36, 165);
+            }
+        }
     }
+
+    article:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    }
+}
 
 #filtro {
     position: fixed;
@@ -163,5 +227,9 @@ body {
     display: block;
     flex-direction: column;
     align-items: center;
-    padding-top: 20px;
+    padding-top: 100px;
+}
+
+#productos h1 {
+    text-align: center;
 }

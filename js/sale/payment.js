@@ -22,6 +22,16 @@ function finalizarVenta() {
 
   carrito = [];
   guardarTodo();
-  alert("Venta realizada");
-  location.href = "../../html/salehistory.html";
+  Toastify({
+        text: "Venta registrada",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "center",
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(to right, #225dca, #7b50dd)",
+        },
+        onClick: function () { window.location.href = '../salehistory.html' }
+      }).showToast();
 }

@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
   <meta charset="UTF-8">
   <title>Pago</title>
   <link rel="stylesheet" href="../../css/sale/payment.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script defer src="../../js/sale/payment.js"></script>
 </head>
+
 <body>
 
-    <h1>Pago</h1>
-    <p>Total a pagar: $<span id="total"></span></p>
-    <button onclick="finalizarVenta()">Confirmar pago</button>
-    <button onclick="location.href='cart.html'">Volver</button>
+  <h1>Pago</h1>
+  <p>Total a pagar: $<span id="total"></span></p>
+  <button onclick="finalizarVenta()">Confirmar pago</button>
+  <button onclick="location.href='cart.html'">Volver</button>
 
-    <a href="cart.html">Devolverse al carrito</a>
-    <script src="../../js/main.js"></script>
-    <script src="../../js/sale/compras.js"></script>
-    <script src="../../js/sale/payment.js"></script>
-    <script>    document.getElementById("total").textContent =     carrito.reduce((s,i)=>s+i.precio*i.cantidad,0); </script>
+  <a href="cart.html">Devolverse al carrito</a>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/sale/compras.js"></script>
+  <script src="../../js/sale/payment.js"></script>
+  <script> document.getElementById("total").textContent = carrito.reduce((s, i) => s + i.precio * i.cantidad, 0); </script>
 
 </body>
+
 </html>

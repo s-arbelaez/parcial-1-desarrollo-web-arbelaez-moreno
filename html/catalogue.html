@@ -1,21 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Catálogo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../css/catalogue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
+
 <body>
-    <section id="filtro"> 
+    <header>
+        <nav>
+            <a href="../index.html">
+                <i class="fa fa-home fa-3x"></i>
+                <p>Inicio</p>
+            </a>
+            <section>
+                <input id="searchBar" name="search" placeholder="Buscar productos" />
+                <button id="searchButton">
+                    <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                </button>
+            </section>
+            <a href="salehistory.html">
+                <i class="fa fa-history fa-3x" aria-hidden="true"></i>
+                <p>Historial</p>
+            </a>
+            <a href="sale/cart.html">
+                <i class="fa fa-cart-plus fa-3x" aria-hidden="true"></i>
+                <p>Nueva venta</p>
+            </a>
+        </nav>
+    </header>
+    <section id="filtro">
         <h1>Filtros:</h1>
     </section>
     <section id="productos">
         <h1>Catálogo de productos</h1>
         <button onclick="crearProductoRapido()" id="agregarProducto">
-            <span> + </span> 
+            <span> + </span>
             <span>Agregar un producto</span>
         </button>
         <section id="catalogo"></section>
@@ -25,4 +54,5 @@
         <script> renderCatalogo();</script>
     </section>
 </body>
+
 </html>

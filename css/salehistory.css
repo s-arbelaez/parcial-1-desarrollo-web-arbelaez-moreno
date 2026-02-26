@@ -5,6 +5,8 @@ body {
 
     header {
         background-color: black;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
 
         nav {
             display: flex;
@@ -32,6 +34,7 @@ body {
 
         p {
             margin: 0;
+            font-weight: bold;
         }
 
         i {
@@ -43,5 +46,11 @@ body {
     a:hover {
         transform: translateY(-6px);
         filter: drop-shadow(0 15px 30px rgba(156, 146, 248, 0.6));
+    }
+    #historial section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: rgb(190, 184, 172);
     }
 }
